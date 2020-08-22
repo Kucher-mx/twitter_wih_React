@@ -6,7 +6,7 @@ import PostItem from '../post-list-item/post-list-item';
 
 
 
-const Post = ({posts}) => {
+const Post = ({posts, onDelete, onImportant, onLike}) => {
 
     const elems = posts.map( (item) => {
 
@@ -15,7 +15,10 @@ const Post = ({posts}) => {
 
             return (
                 <li key={id} className="app-list-item">
-                    <PostItem {...itemRest} />
+                    <PostItem {...itemRest} 
+                    onDelete={() => onDelete(id)}
+                    onImportant={() => onImportant(id)}
+                    onLike={() => onLike(id)}/>
                 </li>
             )
         }

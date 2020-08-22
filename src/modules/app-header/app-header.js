@@ -2,11 +2,12 @@ import React from 'react';
 
 import './app-header.css'; 
 
-const AppHeader = () => {
+const AppHeader = (props) => {
+    const {all, liked} = props;
     return (
         <div className="app-header">
             <h1>Kucher Maxym</h1>
-            <h2>5 записей, 0 из них понравилось</h2>
+            <h2>{all} записи, из них понравилось {liked}</h2>
         </div>
     )
 }

@@ -2,21 +2,49 @@ import React from 'react';
 
 import './post-add-form.css'; 
 
-const AddForm = () => {
-    return (
-        <form className="bottom-panel d-flex">
+export default class AddForm extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            text: '',
+        }
 
-            <input 
-            className="form-control new-post-label"
-            type="text"
-            placeholder="Что у вас сейчас на уме?"/>
+        this.onInput = this.onInput.bind(this);
+        this.submit = this.submit.bind(this);
+    }
 
-            <button type="submit" 
-            className="btn btn-outline-secondary">
-            Добавить</button>
-            
-        </form>
-    )
+    onInput(e) {
+        console.log(e.target.value)
+        this.setState({
+            text : e.target.value
+        })
+    }
+
+    submit(e) {
+        e.preventDefault();
+        this.props.addItem(this.state.text);
+        this.setState({
+            text: ''
+        })
+    }
+
+    render() {
+        return (
+            <form className="bottom-panel d-flex"
+            onSubmit={this.submit}>
+    
+                <input 
+                className="form-control new-post-label"
+                type="text"
+                placeholder="Что у вас сейчас на уме?"
+                onChange={this.onInput}
+                value={this.state.text}/>
+    
+                <button type="submit" 
+                className="btn btn-outline-secondary">
+                Добавить</button>
+                
+            </form>
+        )
+    }
 }
-
-export default AddForm;
